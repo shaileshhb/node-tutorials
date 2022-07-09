@@ -30,6 +30,13 @@ const User = sequelize.define("user", {
       isEmail: true,
     },
   },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    // validate: {
+    //   isAlphanumeric: true,
+    // },    
+  }
 });
 
 module.exports = User;

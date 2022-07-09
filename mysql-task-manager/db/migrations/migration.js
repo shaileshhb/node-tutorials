@@ -9,13 +9,13 @@ const syncUser = async () => {
       onDelete: "CASCADE",
     });
 
-    await User.sync();
-    await Task.sync();
+    // await User.sync({ alter: true });
+    // await Task.sync({ alter: true });
 
     console.log("Tables successfully migrated");
   } catch (err) {
     // console.error(err);
-    throw err
+    throw err;
   }
 };
 
