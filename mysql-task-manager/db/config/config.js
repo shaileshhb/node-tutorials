@@ -9,6 +9,7 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: "mysql",
+    logging: console.log,
   }
 );
 
@@ -19,7 +20,6 @@ const sequelize = new Sequelize(
 // });
 
 // Option 3
-// const sequelize = new Sequelize('mysql://user:pass@example.com:5432/dbname') 
-
+// const sequelize = new Sequelize('mysql://user:pass@example.com:5432/dbname')
 
 module.exports = sequelize;
