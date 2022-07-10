@@ -37,6 +37,9 @@ const User = sequelize.define("user", {
     //   isAlphanumeric: true,
     // },    
   }
+}, {
+  paranoid: true,
+  timestamps: true,
 });
 
 module.exports = User;

@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const sequelize = require("./db/config/config");
 const userRoutes = require("./routers/user");
+const taskRoutes = require("./routers/task");
 
 // TODO: need to know better way of migrating tables.
 require("./db/migrations/migration")
@@ -18,6 +19,7 @@ const startApp = async () => {
     app.use(express.json());
     
     app.use("/api/v1/tutorial", userRoutes);
+    app.use("/api/v1/tutorial", taskRoutes);
 
     app.listen(PORT, () => console.log(`Server started at -> ${PORT}`));
   } catch (err) {

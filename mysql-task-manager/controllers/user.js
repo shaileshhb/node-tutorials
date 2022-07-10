@@ -3,10 +3,6 @@ const { createToken } = require("../middleware/token");
 const { StatusCodes } = require("http-status-codes");
 const bcrypt = require("bcrypt");
 
-const getUsers = async (req, res) => {
-  res.send("get users called");
-};
-
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -48,7 +44,7 @@ const register = async (req, res) => {
 
     userBody.password = bcrypt.hashSync(userBody.password, 10);
 
-    const user = await User.create(userBody);
+    await User.create(userBody);
 
     res.status(StatusCodes.ACCEPTED).json(null);
   } catch (err) {
@@ -57,4 +53,4 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = { getUsers, register, login };
+module.exports = { register, login };

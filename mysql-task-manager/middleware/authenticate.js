@@ -10,11 +10,28 @@ const authenticateMiddleware = (req, res, next) => {
   const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_TOKEN);
-    const { date, username } = decoded;
-    req.user = { date, username };
-    next();
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_TOKEN,
+      {
+        algorithms: ["HS256"],
+      },
+      function (err, payload) {
+        if (err) {
+          throw err;
+        }
+        req.user = {
+          userID: payload.userID,
+          email: payload.email,
+        };
+        next();
+      }
+    );
+    // const { date, username } = decoded;
+    // req.user = { date, username };
   } catch (error) {
-    throw new Error("route cannot be acccessed");
+    throw new Error(error);
   }
 };
+
+module.exports = authenticateMiddleware;

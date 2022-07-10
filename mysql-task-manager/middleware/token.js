@@ -12,6 +12,7 @@ const createToken = (user) => {
     process.env.JWT_TOKEN,
     {
       expiresIn: "1d",
+      algorithm: "HS256"
     }
   );
 
